@@ -1,0 +1,38 @@
+# sqlite数据库配置
+# 一、sqlite文件在resources目录下（仅适合只读的场景，不推荐使用）
+# 1.在IDEA中运行时，sqlite文件会被复制到target下的相对路径（target/classes/dbs/MySqlite.db），修改数据时，修改的是target下的sqlite文件;
+# 2.用jar包运行时，sqlite文件会被复制到缓存目录，修改的也是缓存目录下的db文件（在window 10下的缓存路径是C:\Users\${用户名}\AppData\Local\Temp\sqlite-jdbc-tmp-xxxxxxxx.db）。
+# spring.datasource.url=jdbc:sqlite::resource:dbs/MySqlite.db
+# 二、sqlite文件为相对路径
+# 1.在IDEA中运行时，相对路径基准目录为当前项目的目录（也就是跟src的同级目录）；
+# 2.用jar包运行时，相对路径基准目录为jar包所在目录。
+# spring.datasource.url=jdbc:sqlite:dbs/MySqlite.db
+# 三、sqlite文件为绝对路径
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    driver-class-name: org.sqlite.JDBC # spring的jdbc可以根据spring.datasource.url的前缀判断driver-class-name，所以spring.datasource.driver-class-name该配置可以不写
+    url: jdbc:sqlite:db/MySqlite.db
+  sql:
+    init:
+      #启动时需要初始化的建表语句
+      schema-locations: classpath:schema-sqlite.sql
+      #初始化的数据
+      data-locations: classpath:data-sqlite.sql
+      platform: sqlite
+      mode: always
+# mapper.xml文件路径
+mybatis:
+  mapper-locations: classpath:/org/noah/mapper/xml/*.xml
+# sqlite默认不支持设置用户名和密码，一般是通过对sqlite文件加密进行数据保护，所以这两个配置先不配置
+# spring.datasource.username=
+# spring.datasource.password=
+image:
+  save-path: D:\11-网站\后端\alpha\alpha\image # 图片存储路径
+model:
+  host: 127.0.0.1
+  port: 9876

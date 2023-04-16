@@ -25,7 +25,7 @@ public class FactorLogServiceImpl extends ServiceImpl<FactorLogMapper, FactorLog
     @Override
     public IPage<FactorLogEntity> getListByPage(PageEntity page) {
         Page<FactorLogEntity> faceServiceLogPage = new Page<FactorLogEntity>(page.getPage(), page.getLimit());
-        faceServiceLogPage.addOrder(OrderItem.desc("score"));
+        faceServiceLogPage.addOrder(OrderItem.desc("time"));
         IPage<FactorLogEntity> factorLogEntityIPage = page(faceServiceLogPage);
         return factorLogEntityIPage;
     }

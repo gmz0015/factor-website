@@ -72,9 +72,12 @@ public class FactorController {
             List<Long> factorDataIdList = factorDataLogService.getDataIdByLogId(factorLogEntity.getId());
             List<FactorDataEntity> factorDataEntityList = factorDataService.listByIds(factorDataIdList);
             factorLogEntity.setDatas(factorDataEntityList);
+
+            UserEntity userEntity = userService.getById(factorLogEntity.getUserId());
+            factorLogEntity.setUsername(userEntity.getUsername());
         }
         iPage.setRecords(factorLogEntities);
-        return ResponseEntity.success(factorLogEntities);
+        return ResponseEntity.success(iPage);
     }
 
     @GetMapping("/info")

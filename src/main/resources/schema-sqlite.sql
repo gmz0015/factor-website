@@ -82,8 +82,7 @@ CREATE TABLE IF NOT EXISTS user
         unique,
     password TEXT              not null,
     salt     TEXT              not null,
-    status   INTEGER default 1 not null,
-    is_delete   INTEGER default 0 not null
+    status   INTEGER default 1 not null
 );
 
 create unique index IF NOT EXISTS user_id_uindex

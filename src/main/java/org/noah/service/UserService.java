@@ -12,6 +12,4 @@ public interface UserService extends IService<UserEntity> {
     public UserEntity register(String username, String password) throws CommonException;
 
     public IPage<UserEntity> getListByPage(PageEntity page);
-
-    public boolean deleteById(Long userId);
 }

@@ -8,8 +8,6 @@ import org.noah.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-@Data
 public class ResponseEntity<T> {
 
     private static final Logger log = LoggerFactory.getLogger(ResponseEntity.class);
@@ -25,6 +23,46 @@ public class ResponseEntity<T> {
     private String respCode;
     private String respDesc;
     private String timestamp;
+
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    public T getResult() {
+        return result;
+    }
+
+    public void setResult(T result) {
+        this.result = result;
+    }
+
+    public String getRespCode() {
+        return respCode;
+    }
+
+    public void setRespCode(String respCode) {
+        this.respCode = respCode;
+    }
+
+    public String getRespDesc() {
+        return respDesc;
+    }
+
+    public void setRespDesc(String respDesc) {
+        this.respDesc = respDesc;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public ResponseEntity() {}
 

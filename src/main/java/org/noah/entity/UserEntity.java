@@ -10,10 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
 @Accessors(chain = true)
-@NoArgsConstructor
-@AllArgsConstructor
 @TableName(value = "user")
 public class UserEntity implements Serializable {
 
@@ -26,8 +23,6 @@ public class UserEntity implements Serializable {
     private String salt;
 
     private Integer status;
-
-    private Integer isDelete;
 
     @TableField(exist = false)
     private Set<String> roles;
@@ -46,17 +41,63 @@ public class UserEntity implements Serializable {
         }
     }
 
-    public enum DELETE_FLAG{
-        DELETE(1),
-        NOT_DELETE(0);
-        private Integer flag;
+    public UserEntity() {
+    }
 
-        DELETE_FLAG(Integer flag) {
-            this.flag = flag;
-        }
+    public UserEntity(Long id, String username, String password, String salt, Integer status, Set<String> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+        this.status = status;
+        this.roles = roles;
+    }
 
-        public Integer getFlag() {
-            return flag;
-        }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }

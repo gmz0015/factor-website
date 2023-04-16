@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 public class PageEntity {
     private List<?> records;
 
@@ -27,5 +26,53 @@ public class PageEntity {
         page.setTotalCount(iPage.getTotal());
         page.setTotalPage(iPage.getPages());
         return page;
+    }
+
+    public List<?> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<?> records) {
+        this.records = records;
+    }
+
+    public Long getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Long limit) {
+        this.limit = limit;
+    }
+
+    public Long getPage() {
+        return page;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public Long getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Long totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public Long getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 }

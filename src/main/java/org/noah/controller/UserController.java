@@ -42,6 +42,7 @@ public class UserController {
     public ResponseEntity list(@RequestBody PageEntity page) {
         log.info("Get User List. PageEntity={}", page);
         IPage<UserEntity> iPage = userService.getListByPage(page);
+
         return ResponseEntity.success(iPage);
     }
 
@@ -97,7 +98,7 @@ public class UserController {
         log.info("Delete User. ID={}", id);
 
         boolean result = userRoleService.deleteByUserId(id);
-        result = result && userService.deleteById(id);
+        result = result && userService.removeById(id);
 
         return ResponseEntity.success(result);
     }

@@ -58,19 +58,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public IPage<UserEntity> getListByPage(PageEntity page) {
-        LambdaQueryWrapper<UserEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserEntity::getIsDelete, UserEntity.DELETE_FLAG.NOT_DELETE.getFlag());
-
-        IPage<UserEntity> userEntityIPage = page(new Page<UserEntity>(page.getPage(), page.getLimit()), queryWrapper);
+        IPage<UserEntity> userEntityIPage = page(new Page<UserEntity>(page.getPage(), page.getLimit()));
         return userEntityIPage;
-    }
-
-    @Override
-    public boolean deleteById(Long userId) {
-        UserEntity userEntity = getById(userId);
-        userEntity.setStatus(UserEntity.STATUS_FLAG.DISABLE.getFlag());
-        userEntity.setIsDelete(UserEntity.DELETE_FLAG.DELETE.getFlag());
-
-        return updateById(userEntity);
     }
 }

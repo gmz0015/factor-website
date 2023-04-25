@@ -4,7 +4,8 @@ import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -16,9 +17,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+    private Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
 
     public HttpMessageConverter<String> stringConverter() {
         StringHttpMessageConverter converter = new StringHttpMessageConverter(

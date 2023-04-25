@@ -1,24 +1,24 @@
 package org.noah.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import lombok.extern.slf4j.Slf4j;
 import org.noah.entity.*;
 import org.noah.service.RoleService;
 import org.noah.service.SysLogService;
 import org.noah.service.UserRoleService;
 import org.noah.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 

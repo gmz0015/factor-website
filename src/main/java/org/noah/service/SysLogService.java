@@ -7,4 +7,6 @@ import org.noah.entity.SysLogEntity;
 
 public interface SysLogService extends IService<SysLogEntity> {
     public IPage<SysLogEntity> getListByPage(PageEntity page);
+
+    public SysLogEntity getLastLoginDateByUserId(Long userId);
 }

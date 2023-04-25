@@ -1,13 +1,13 @@
 package org.noah.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.noah.entity.*;
 import org.noah.enums.CommonError;
 import org.noah.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +17,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-@Slf4j
 @RestController
 @RequestMapping("/factor")
 public class FactorController {
+    private Logger log = LoggerFactory.getLogger(FactorController.class);
     @Value("${image.save-path}")
     private String imageSavePath;
 
@@ -41,6 +41,9 @@ public class FactorController {
 
     @Autowired
     private FactorModelService factorModelService;
+
+    @Autowired
+    private SysLogService sysLogService;
 
     @PostMapping("/list")
     public ResponseEntity list(@RequestBody PageEntity page) {
@@ -106,8 +109,23 @@ public class FactorController {
         }else {
             UserEntity userEntity = (UserEntity) authEntity.getAuth();
 
+            // 获取在线时长
+            SysLogEntity sysLogEntity = sysLogService.getLastLoginDateByUserId(userEntity.getId());
+            Date lastLoginDate = sysLogEntity.getTime();
+            // 计算时间差
+            long nd = 1000 * 24 * 60 * 60;
+            long nh = 1000 * 60 * 60;
+            long nm = 1000 * 60;
+            long ns = 1000;
+            // 获得两个时间的毫秒时间差异
+            long diff = new Date().getTime() - lastLoginDate.getTime();
+            // 计算差多少秒
+            long sec = diff % nd % nh % nm / ns;
+            Double min = sec / 60.0;
+
+
             Random random = new Random();
-            Double onlineTime = (double) random.nextInt(500) / 10;
+            Double onlineTime = userEntity.getOnlineTime() + min;
 
             FactorLogEntity factorLogEntity = new FactorLogEntity();
             factorLogEntity.setTime(new Date());

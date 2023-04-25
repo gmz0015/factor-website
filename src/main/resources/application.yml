@@ -16,9 +16,10 @@ spring:
       max-request-size: 100MB
   datasource:
     driver-class-name: org.sqlite.JDBC # spring的jdbc可以根据spring.datasource.url的前缀判断driver-class-name，所以spring.datasource.driver-class-name该配置可以不写
-    url: jdbc:sqlite:db/MySqlite.db
+    url: jdbc:sqlite:db/database.db
   sql:
     init:
+      enabled: false
       #启动时需要初始化的建表语句
       schema-locations: classpath:schema-sqlite.sql
       #初始化的数据

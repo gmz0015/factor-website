@@ -24,6 +24,8 @@ public class UserEntity implements Serializable {
 
     private Integer status;
 
+    private Double onlineTime;
+
     @TableField(exist = false)
     private Set<String> roles;
 
@@ -44,12 +46,24 @@ public class UserEntity implements Serializable {
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String username, String password, String salt, Integer status, Set<String> roles) {
+
+
+    public UserEntity(Long id, String username, String password, String salt, Integer status, Double onlineTime) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.salt = salt;
         this.status = status;
+        this.onlineTime = onlineTime;
+    }
+
+    public UserEntity(Long id, String username, String password, String salt, Integer status, Double onlineTime, Set<String> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+        this.status = status;
+        this.onlineTime = onlineTime;
         this.roles = roles;
     }
 
@@ -99,5 +113,13 @@ public class UserEntity implements Serializable {
 
     public void setRoles(Set<String> roles) {
         this.roles = roles;
+    }
+
+    public Double getOnlineTime() {
+        return onlineTime;
+    }
+
+    public void setOnlineTime(Double onlineTime) {
+        this.onlineTime = onlineTime;
     }
 }

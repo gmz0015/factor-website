@@ -32,6 +32,11 @@
             </el-tag>
           </template>
         </el-table-column>
+        <el-table-column label="Online Time(min)" class-name="status-col" min-width="100">
+          <template slot-scope="{ row }">
+            <span>{{ row.onlineTime }}</span>
+          </template>
+        </el-table-column>
         <el-table-column label="Operation" align="center" min-width="230" class-name="small-padding fixed-width">
           <template slot-scope="{ row, $index }">
             <el-button type="primary" size="mini" @click="handleUpdate(row)" style="margin-right: 20px;">

@@ -8,6 +8,8 @@
 # 2.用jar包运行时，相对路径基准目录为jar包所在目录。
 # spring.datasource.url=jdbc:sqlite:dbs/MySqlite.db
 # 三、sqlite文件为绝对路径
+server:
+  port: 8080
 spring:
   servlet:
     multipart:

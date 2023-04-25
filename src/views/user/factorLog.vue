@@ -15,8 +15,8 @@
                         <el-descriptions :column="4" style="margin-left:20px !important;">
                             <el-descriptions-item v-for="(data, index) in props.row.datas">
                                 <template slot="label">
-                                    <div v-if="data.type == 0">图片 - {{ index + 1 }}</div>
-                                    <div v-else-if="data.type == 1">文本 - {{ index + 1 }}</div>
+                                    <div v-if="data.type == 0">Image - {{ index + 1 }}</div>
+                                    <div v-else-if="data.type == 1">Text - {{ index + 1 }}</div>
                                 </template>
                                 <div v-if="data.type == 0">
                                     <img height="200px" :src="'data:image/png;base64,' + data.image" alt="">

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/role")
 public class RoleController {
-    private Logger log = LoggerFactory.getLogger(RoleController.class);
+    private final Logger log = LoggerFactory.getLogger(RoleController.class);
     @Autowired
     private RoleService roleService;
 

@@ -20,7 +20,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/factor")
 public class FactorController {
-    private Logger log = LoggerFactory.getLogger(FactorController.class);
+    private final Logger log = LoggerFactory.getLogger(FactorController.class);
     @Value("${image.save-path}")
     private String imageSavePath;
 

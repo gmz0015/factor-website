@@ -20,7 +20,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/oauth")
 public class OauthController {
-    private Logger log = LoggerFactory.getLogger(OauthController.class);
+    private final Logger log = LoggerFactory.getLogger(OauthController.class);
 
     @Autowired
     private AuthService authService;

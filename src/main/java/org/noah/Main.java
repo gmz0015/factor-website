@@ -1,29 +1,23 @@
 package org.noah;
 
-import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
-import org.noah.entity.RoleEntity;
-import org.noah.entity.UserEntity;
-import org.noah.entity.UserRoleEntity;
 import org.noah.service.RoleService;
 import org.noah.service.UserRoleService;
 import org.noah.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.util.List;
-
-@Slf4j
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 @ComponentScan(value = {"org.noah"})
 @MapperScan(value= {"org.noah.mapper"})
 public class Main implements CommandLineRunner {
+    private Logger log = LoggerFactory.getLogger(Main.class);
     @Autowired
     private RoleService roleService;
 

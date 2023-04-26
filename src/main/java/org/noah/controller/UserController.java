@@ -34,8 +34,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserEntity userEntity) {
         log.info("Register User. UserEntity={}", userEntity);
-        userService.register(userEntity.getUsername(), userEntity.getPassword());
-        return ResponseEntity.success();
+        return ResponseEntity.success(userService.register(userEntity.getUsername(), userEntity.getPassword()));
     }
 
     @PostMapping("/list")

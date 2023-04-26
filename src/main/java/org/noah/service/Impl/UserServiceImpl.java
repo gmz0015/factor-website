@@ -42,6 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
             userEntity.setUsername(username);
             userEntity.setPassword(password);
             userEntity.setSalt(salt);
+            userEntity.setOnlineTime(0D);
             baseMapper.insert(userEntity);
 
             // 赋予默认角色

@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column label="Online Time(min)" class-name="status-col" min-width="100">
           <template slot-scope="{ row }">
-            <span>{{ row.onlineTime }}</span>
+            <span>{{ row.onlineTime | numFilter }}</span>
           </template>
         </el-table-column>
         <el-table-column label="Operation" align="center" min-width="230" class-name="small-padding fixed-width">
@@ -135,6 +135,11 @@ export default {
     typeFilter(type) {
       return calendarTypeKeyValue[type];
     },
+    numFilter(value) {
+      // 截取当前数据到小数点后两位
+      let realVal = parseFloat(value).toFixed(2)
+      return realVal
+    }
   },
   data() {
     return {

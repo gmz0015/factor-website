@@ -173,8 +173,23 @@ public class FactorController {
         }else {
             UserEntity userEntity = (UserEntity) authEntity.getAuth();
 
+            // 获取在线时长
+            SysLogEntity sysLogEntity = sysLogService.getLastLoginDateByUserId(userEntity.getId());
+            Date lastLoginDate = sysLogEntity.getTime();
+            // 计算时间差
+            long nd = 1000 * 24 * 60 * 60;
+            long nh = 1000 * 60 * 60;
+            long nm = 1000 * 60;
+            long ns = 1000;
+            // 获得两个时间的毫秒时间差异
+            long diff = new Date().getTime() - lastLoginDate.getTime();
+            // 计算差多少秒
+            long sec = diff % nd % nh % nm / ns;
+            Double min = sec / 60.0;
+
+
             Random random = new Random();
-            Double onlineTime = (double) random.nextInt(500) / 10;
+            Double onlineTime = userEntity.getOnlineTime() + min;
 
             FactorLogEntity factorLogEntity = new FactorLogEntity();
             factorLogEntity.setTime(new Date());

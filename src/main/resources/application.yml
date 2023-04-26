@@ -9,7 +9,7 @@
 # spring.datasource.url=jdbc:sqlite:dbs/MySqlite.db
 # 三、sqlite文件为绝对路径
 server:
-  port: 8080
+  port: 8001
 spring:
   servlet:
     multipart:

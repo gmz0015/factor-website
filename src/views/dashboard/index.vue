@@ -5,10 +5,10 @@
         <el-form ref="formData" :model="formData" label-width="120px" size="mini">
           <el-form-item v-for="(content, index) in formData.contents" :label="'Content - ' + (index + 1) + ': '"
             :key="index" :prop="'contents.' + index + '.value'" :rules="{
-              required: true,
-              message: 'Content cannot be empty',
-              trigger: 'blur',
-            }">
+                required: true,
+                message: 'Content cannot be empty',
+                trigger: 'blur',
+              }">
             <el-input v-model="content.value" type="textarea" :autosize="{ minRows: 1, maxRows: 4 }"
               placeholder="Please input content" :show-word-limit="true"
               style="width: 90%; margin-right: 10px"></el-input>
@@ -64,7 +64,7 @@
         <el-table-column prop="username" align="center" label="UserName" min-width="120"></el-table-column>
         <el-table-column label="Online Time(min)" min-width="150px" align="center">
           <template slot-scope="{ row }">
-            <span>{{ row.totalOnlineTime }}</span>
+            <span>{{ row.totalOnlineTime | numFilter }}</span>
           </template>
         </el-table-column>
         <el-table-column prop="totalScore" align="center" label="Score" min-width="100"></el-table-column>
@@ -109,7 +109,13 @@ export default {
   name: "Dashboard",
   components: { Pagination },
   directives: { permission },
-  filters: {},
+  filters: {
+    numFilter(value) {
+      // 截取当前数据到小数点后两位
+      let realVal = parseFloat(value).toFixed(2)
+      return realVal
+    }
+  },
   data() {
     return {
       submitButtonLoading: false,

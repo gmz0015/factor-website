@@ -147,16 +147,16 @@ public class FactorController {
             }
 
             // 调用模型获取分数
-//            ModelRequestEntity modelRequestEntity = new ModelRequestEntity();
-//            modelRequestEntity.setText(texts);
-//            modelRequestEntity.setOnlineTime(onlineTime);
-//            modelRequestEntity.setImg(new ArrayList<>());
-//            log.info(">>>>>Model Request: {}", modelRequestEntity);
-//            ModelResponseEntity modelResponseEntity = factorModelService.getScore(modelRequestEntity);
-//            log.info("<<<<<Model Response: {}", modelResponseEntity);
-//
-//            factorLogEntity.setScore(modelResponseEntity.getScore());
-            factorLogEntity.setScore((double) random.nextInt(500) / 10);
+            ModelRequestEntity modelRequestEntity = new ModelRequestEntity();
+            modelRequestEntity.setText(texts);
+            modelRequestEntity.setOnline_time(onlineTime);
+            modelRequestEntity.setImg(new ArrayList<>());
+            log.info(">>>>>Model Request: {}", modelRequestEntity);
+            ModelResponseEntity modelResponseEntity = factorModelService.getScore(modelRequestEntity);
+            log.info("<<<<<Model Response: {}", modelResponseEntity);
+
+            factorLogEntity.setScore(modelResponseEntity.getScore());
+//            factorLogEntity.setScore((double) random.nextInt(500) / 10);
             factorLogService.updateById(factorLogEntity);
 
             return ResponseEntity.success();
@@ -238,16 +238,16 @@ public class FactorController {
             }
 
             // 调用模型获取分数
-//            ModelRequestEntity modelRequestEntity = new ModelRequestEntity();
-//            modelRequestEntity.setText(new ArrayList<>());
-//            modelRequestEntity.setImg(imgs);
-//            modelRequestEntity.setOnlineTime(onlineTime);
-//            log.info(">>>>>Model Request: {}", modelRequestEntity);
-//            ModelResponseEntity modelResponseEntity = factorModelService.getScore(modelRequestEntity);
-//            log.info("<<<<<Model Response: {}", modelResponseEntity);
-//
-//            factorLogEntity.setScore(modelResponseEntity.getScore());
-            factorLogEntity.setScore((double) random.nextInt(500) / 10);
+            ModelRequestEntity modelRequestEntity = new ModelRequestEntity();
+            modelRequestEntity.setText(new ArrayList<>());
+            modelRequestEntity.setImg(imgs);
+            modelRequestEntity.setOnline_time(onlineTime);
+            log.info(">>>>>Model Request: {}", modelRequestEntity);
+            ModelResponseEntity modelResponseEntity = factorModelService.getScore(modelRequestEntity);
+            log.info("<<<<<Model Response: {}", modelResponseEntity);
+
+            factorLogEntity.setScore(modelResponseEntity.getScore());
+//            factorLogEntity.setScore((double) random.nextInt(500) / 10);
             factorLogService.updateById(factorLogEntity);
 
             return ResponseEntity.success(true);

@@ -8,29 +8,38 @@ public class ModelResponseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String resCode;
+    private String res_code;
 
-    private String resDesc;
+    private String res_desc;
 
     private Double score;
 
     public ModelResponseEntity() {
     }
 
-    public String getResCode() {
-        return resCode;
+    @Override
+    public String toString() {
+        return "ModelResponseEntity{" +
+                "res_code='" + res_code + '\'' +
+                ", res_desc='" + res_desc + '\'' +
+                ", score=" + score +
+                '}';
     }
 
-    public void setResCode(String resCode) {
-        this.resCode = resCode;
+    public String getRes_code() {
+        return res_code;
     }
 
-    public String getResDesc() {
-        return resDesc;
+    public void setRes_code(String res_code) {
+        this.res_code = res_code;
     }
 
-    public void setResDesc(String resDesc) {
-        this.resDesc = resDesc;
+    public String getRes_desc() {
+        return res_desc;
+    }
+
+    public void setRes_desc(String res_desc) {
+        this.res_desc = res_desc;
     }
 
     public Double getScore() {

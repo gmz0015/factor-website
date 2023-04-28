@@ -9,18 +9,27 @@ public class ModelRequestEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Double onlineTime;
+    private Double online_time;
 
     private List<String> text;
 
     private List<String> img;
 
-    public Double getOnlineTime() {
-        return onlineTime;
+    @Override
+    public String toString() {
+        return "ModelRequestEntity{" +
+                "online_time=" + online_time +
+                ", text=" + text +
+                ", img=" + img +
+                '}';
     }
 
-    public void setOnlineTime(Double onlineTime) {
-        this.onlineTime = onlineTime;
+    public Double getOnline_time() {
+        return online_time;
+    }
+
+    public void setOnline_time(Double online_time) {
+        this.online_time = online_time;
     }
 
     public List<String> getText() {

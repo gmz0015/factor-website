@@ -42,12 +42,12 @@
                 </el-table-column>
                 <el-table-column label="Score" class-name="status-col" min-width="100">
                     <template slot-scope="{row}">
-                        {{ row.score }}
+                        {{ row.score | numFilter }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Online Time" class-name="status-col" min-width="120">
                     <template slot-scope="{row}">
-                        {{ row.onlineTime }}
+                        {{ row.onlineTime | numFilter }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Date" min-width="150px" align="center">
@@ -92,6 +92,11 @@ export default {
             }
             return statusMap[status]
         },
+        numFilter(value) {
+            // 截取当前数据到小数点后两位
+            let realVal = parseFloat(value).toFixed(2)
+            return realVal
+        }
     },
     data() {
         return {

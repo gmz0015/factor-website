@@ -67,7 +67,11 @@
             <span>{{ row.totalOnlineTime | numFilter }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="totalScore" align="center" label="Score" min-width="100"></el-table-column>
+        <el-table-column align="center" label="Score" min-width="100">
+          <template slot-scope="{ row }">
+            <span>{{ row.totalScore | numFilter }}</span>
+          </template>
+        </el-table-column>
         <el-table-column label="Date" min-width="150px" align="center">
           <template slot-scope="{ row }">
             <span>{{ row.time | parseTime("{y}-{m}-{d} {h}:{i}") }}</span>

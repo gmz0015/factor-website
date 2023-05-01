@@ -2,15 +2,13 @@ package org.noah.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.noah.entity.*;
-import org.noah.service.RoleService;
-import org.noah.service.SysLogService;
-import org.noah.service.UserRoleService;
-import org.noah.service.UserService;
+import org.noah.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,10 +29,22 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private FactorLogService factorLogService;
+
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserEntity userEntity) {
         log.info("Register User. UserEntity={}", userEntity);
-        return ResponseEntity.success(userService.register(userEntity.getUsername(), userEntity.getPassword()));
+        userEntity = userService.register(userEntity.getUsername(), userEntity.getPassword());
+
+        FactorLogEntity factorLogEntity = new FactorLogEntity();
+        factorLogEntity.setTime(new Date());
+        factorLogEntity.setUserId(userEntity.getId());
+        factorLogEntity.setOnlineTime(0D);
+        factorLogEntity.setScore(0D);
+        factorLogService.save(factorLogEntity);
+
+        return ResponseEntity.success();
     }
 
     @PostMapping("/list")

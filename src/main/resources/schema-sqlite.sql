@@ -16,12 +16,10 @@ CREATE TABLE IF NOT EXISTS factor_log
         primary key autoincrement
         unique,
     tag     TEXT,
+    user_id INTEGER,
     score real,
     online_time real,
-    time    date    not null,
-    user_id INTEGER not null
-        constraint factor_log_user_id_fk
-            references user
+    time    date    not null
 );
 
 

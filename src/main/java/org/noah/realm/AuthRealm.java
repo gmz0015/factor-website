@@ -13,19 +13,22 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.noah.entity.*;
+import org.noah.exception.ExceptionAdviceHandler;
 import org.noah.service.AuthService;
 import org.noah.service.RoleService;
 import org.noah.service.UserRoleService;
 import org.noah.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Slf4j
 @Component
 public class AuthRealm extends AuthorizingRealm {
+    private final Logger log = LoggerFactory.getLogger(AuthRealm.class);
 
     @Autowired
     @Lazy

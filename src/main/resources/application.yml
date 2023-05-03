@@ -37,5 +37,5 @@ mybatis:
 image:
   save-path: D:\11-网站\后端\alpha\alpha\image # 图片存储路径
 model:
-  host: 127.0.0.1
+  host: 175.178.151.11
   port: 9876

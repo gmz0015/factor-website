@@ -25,7 +25,6 @@ public class FactorLogEntity implements Serializable {
      */
     private String tag;
 
-
     private Long userId;
 
     private Double score;

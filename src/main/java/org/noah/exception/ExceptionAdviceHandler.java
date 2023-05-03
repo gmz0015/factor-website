@@ -1,10 +1,11 @@
 package org.noah.exception;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.ShiroException;
 import org.noah.entity.CommonException;
 import org.noah.entity.ResponseEntity;
 import org.noah.enums.CommonError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Slf4j
 @RestControllerAdvice
 public class ExceptionAdviceHandler {
+    private final Logger log = LoggerFactory.getLogger(ExceptionAdviceHandler.class);
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(ShiroException.class)
     public ResponseEntity handle401(ShiroException e) {

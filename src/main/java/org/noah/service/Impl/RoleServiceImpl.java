@@ -2,16 +2,11 @@ package org.noah.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.noah.entity.RoleEntity;
-import org.noah.entity.UserEntity;
 import org.noah.mapper.RoleMapper;
 import org.noah.service.RoleService;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
-@Slf4j
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> implements RoleService {
     @Override

@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "db",
+            "database": "${workspaceFolder:db}/database.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "mysqlite",
+            "database": "${workspaceFolder:db}/MySqlite.db"
+        }
+    ]
+}

@@ -184,6 +184,12 @@ export default {
       });
     },
     submitText() {
+      let loading = this.$loading({
+        lock: true,
+        text: 'Submitting...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
       this.submitButtonLoading = true
       this.$refs["formData"].validate((valid) => {
         if (valid) {
@@ -193,18 +199,28 @@ export default {
           for (let text of this.formData.contents) {
             texts.push(text.value);
           }
+          loading.close();
+          this.$notify({
+            title: 'Submit Success',
+            message: 'Text has been submitted to server\nThe model is processing',
+            type: 'success'
+          });
+          this.submitButtonLoading = false
           factorAddLogText(texts).then(() => {
             this.$notify({
-              title: "Success",
-              message: "提交成功",
-              type: "success",
-              duration: 2000,
+              title: "Model processing Success",
+              message: "Page will be refreshed",
+              type: "success"
             });
             this.getList();
-
-            this.submitButtonLoading = false
           });
         } else {
+          this.$notify.error({
+            title: "Validate failed",
+            message: "Please check the form",
+            duration: 2000,
+          });
+          loading.close();
           this.submitButtonLoading = false
         }
       });
@@ -213,15 +229,20 @@ export default {
       console.log("handleDelete", row, index);
       factorDeleteLog({ id: row.id }).then((ret) => {
         this.$notify({
-          title: "Success",
-          message: "删除成功",
+          title: "Delete Success",
           type: "success",
           duration: 2000,
         });
         this.getList();
       });
     },
-    submitUpload() {
+    async submitUpload() {
+      let loading = this.$loading({
+        lock: true,
+        text: 'Submitting...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
       this.submitButtonLoading = true
       console.log(this.fileList);
       console.log(this.$refs.upload);
@@ -246,8 +267,25 @@ export default {
         },
       };
 
+      loading.close();
+      this.$notify({
+        title: 'Submit Success',
+        message: 'Image has been submitted to server\nThe model is processing',
+        type: 'success'
+      });
       this.submitButtonLoading = false
-      return factorAddLogImage(config, param);
+
+      let that = this
+      factorAddLogImage(config, param).then((response) => {
+        console.log('factorAddLogImage', response)
+        that.getList();
+        that.$notify({
+          title: 'Model processing Success',
+          message: 'Page will be refreshed',
+          type: 'success'
+        });
+      })
+      return;
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);

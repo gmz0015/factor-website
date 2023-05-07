@@ -59,7 +59,9 @@ public class FactorController {
         log.info("factorLogEntities:{}", factorLogEntities);
         for (FactorLogEntity factorLogEntity : factorLogEntities) {
             UserEntity userEntity = userService.getById(factorLogEntity.getUserId());
-            factorLogEntity.setUsername(userEntity.getUsername());
+            if (userEntity != null) {
+                factorLogEntity.setUsername(userEntity.getUsername());
+            }
         }
         return ResponseEntity.success(factorLogEntities);
     }
